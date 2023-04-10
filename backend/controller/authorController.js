@@ -26,8 +26,7 @@ const getSingleAuthor= async(req,res)=>{
 
 const getAllAuthors = async(req,res)=>{
     try{
-        const {name} = req.body;
-        const author = await Author.find({name});
+        const author = await Author.find({});
         res.status(200).json(author);
     }catch(err){
         console.log(err);

@@ -22,4 +22,4 @@ const magazineSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('magazineSchema',magazineSchema);
+module.exports = mongoose.model('Magazine',magazineSchema);
