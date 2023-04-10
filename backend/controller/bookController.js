@@ -26,8 +26,8 @@ const getSingleBook = async(req,res)=>{
 const updateBook = async(req,res) =>{
     try{
         const{isbn,bookName,price}=req.body;
-       const book = await Book.findByIdAndUpdate({isbn}); 
-       if(!book) res.status(404).json({msg:'Book not found!'});
+        const book = await Book.findByIdAndUpdate({isbn}); 
+        if(!book) res.status(404).json({msg:'Book not found!'});
         book.price = newPrice;
         book.save();
         res.status(200).json(book);

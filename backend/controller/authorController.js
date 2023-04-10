@@ -1,62 +1,38 @@
-const Magazine = require('../model/Magazines');
+const Author = require('../model/Author');
 
-const createMagazine = async(req,res)=>{
+const createAuthor = async(req,res)=>{
     try{
-        const {magazineName,author,price,isbn} = req.body;
-        const book = await Book.create({magazineName,author,price,isbn});
-        res.status(201).json({msg:'Magazine successfully created!'});
+        const {name,imageurl,bookArray,magazineArray} = req.body;
+        const author = await Author.create({name,imageurl,bookArray,magazineArray});
+        res.status(201).json({msg:'Author successfully created!'});
     }catch(err){
         console.log(err);
         res.status(404).json({msg:'something went wrong!'});
     }
 }
 
-const getSingleMagazine= async(req,res)=>{
+const getSingleAuthor= async(req,res)=>{
     try{
-        const {magazineName,isbn} = req.body;
-        const magazine = await Magazine.findOne({isbn,magazineName});
-        if(!magazine) req.status(404).json({msg:'Magazine not found!'});
-        res.status(200).json({msg:'Magazine found!'})
+        const {name} = req.body;
+        const author = await Author.findOne({name});
+        if(!author) req.status(404).json({msg:'Author not found!'});
+        res.status(200).json({msg:'Author found!'})
     }catch(err){
         console.log(err);
         res.status(404).json({msg:'something went wrong!'});
     }
 }
 
-const updateMagazine = async(req,res) =>{
-    try{
-        const{isbn,magazineName,price}=req.body;
-       const magazine = await Magazine.findByIdAndUpdate({isbn}); 
-       if(!magazine) res.status(404).json({msg:'Magazine not found!'});
-       magazine.price = newPrice;
-       magazine.save();
-        res.status(200).json(magazine);
-    }catch(err){
-        console.log(err);
-        res.status(404).json({msg:'something went wrong!'});
-    }
-}
 
-const getAllMagazines = async(req,res)=>{
+const getAllAuthors = async(req,res)=>{
     try{
-        const magazine = await Magazine.find({});
-        res.status(200).json(magazine);
+        const {name} = req.body;
+        const author = await Author.find({name});
+        res.status(200).json(author);
     }catch(err){
         console.log(err);
         res.status(500).json({msg:'Server error'});
     }
 }
 
-
-const deleteMagazine = async(req,res)=>{
-    try{
-        const {magazineName} = req.body;
-        const book = await Magazine.findOneAndDelete({magazineName});
-        res.status(200).json({msg:'Magazine is deleted!'});
-    }catch(err){
-        console.log(err);
-        res.status(500).json({msg:'Server error'});
-    }
-}
-
-module.exports = {createMagazine,getSingleMagazine,getAllMagazines,updateMagazine,deleteMagazine};
+module.exports = {createAuthor,getSingleAuthor,getAllAuthors};

@@ -7,6 +7,14 @@ const authorSchema = new mongoose.Schema({
     },
     imageurl:{
         type:String
+    },
+    bookArray:{
+        type:[mongoose.Schema.Types.ObjectId],
+        required:true
+    },
+    magazineArray:{
+        type:[mongoose.Schema.Types.ObjectId],
+        required:true
     }
 })
 

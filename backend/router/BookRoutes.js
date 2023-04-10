@@ -3,8 +3,9 @@ const {createBook,getSingleBook,getAllBooks,updateBook,deleteBook} = require('..
 const router = express.Router();
 
 router.route('/').post(createBook);
-router.route('/getsinglebook').get(getSingleBook)
+router.route('/:isbn').get(getSingleBook);
+router.route('/:isbn').put(updateBook);
+router.route('/:isbn').delete(deleteBook);
 router.route('/getallbooks').get(getAllBooks);
-router.route('/deletbook').delete(deleteBook);
 
 module.exports = router;
